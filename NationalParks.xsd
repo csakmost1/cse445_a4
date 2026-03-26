@@ -1,0 +1,44 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <xsd:annotation>
+        <xsd:documentation xml:lang="en"> NationalParks.xsd file that defines the XML schema allowing the structure shown in Figure 1</xsd:documentation>
+    </xsd:annotation>
+    <!-- Starting Element -->
+    <xsd:element name="NationalParks" type="NationalParksType"/>
+
+    <!-- National Parks Element -->
+    <xsd:complexType name="NationalParksType">
+        <xsd:sequence>
+            <xsd:element name="NationalPark" type="NationalParkType" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <!-- National Park Element  -->
+    <xsd:complexType name="NationalParkType">
+        <xsd:sequence>
+            <xsd:element name="Name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="Phone" type="PhoneType" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element name="Address" type="AddressType" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+        <xsd:attribute name="Rating" type="xsd:double" use="optional"/>
+    </xsd:complexType>
+
+    <!-- Phone number Element -->
+    <xsd:simpleType name="PhoneType">
+        <xsd:restriction base="xsd:string"> 
+            <xsd:pattern value="\d{3}\-\d{3}-\d{4}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!-- Address Element -->
+    <xsd:complexType name="AddressType">
+        <xsd:sequence>
+            <xsd:element name="Number" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="Street" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="City" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="State" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="Zip" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+        <xsd:attribute name="NearestAirport" type="xsd:string" use="required"/>
+    </xsd:complexType>
+</xsd:schema>
